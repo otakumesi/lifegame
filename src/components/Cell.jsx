@@ -3,9 +3,10 @@ import React from 'react';
 class Cell extends React.Component {
   render() {
     return (
-      <li className="c-cell">
-        {this.isExist ? '■' : '□'}
-      </li>
+      <div className="c-cell {isExist ? 'c_cell__isExist' : ''}">
+      </div>
     )
   }
 }
+
+export default Cell;

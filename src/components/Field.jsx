@@ -8,9 +8,9 @@ class Field extends React.Component {
       <Cell key={cell.id} isExist={cell.isExist} />
     )
     return (
-      <ul>
+      <div className="c-cells">
         {CellItems}
-      </ul>
+      </div>
     )
   }
 }

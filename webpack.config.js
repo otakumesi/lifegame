@@ -10,7 +10,7 @@ const config = {
   devtool: "#source-map",
   entry: {
     app: path.resolve(src, "main.js"),
-    vendor: ["react", "react-dom", "redux", "react-redux"]
+    vendor: ["react", "react-dom", "redux", "react-redux", "uuid"]
   },
   output: {
     path: dist,
@@ -33,7 +33,7 @@ const config = {
         use: "html-loader"
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: [
@@ -41,7 +41,7 @@ const config = {
               loader: "css-loader"
             },
             {
-              loader: "scss-loader"
+              loader: "sass-loader"
             },
             {
               loader: "postcss-loader"

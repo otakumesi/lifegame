@@ -1,0 +1,16 @@
+.c-cells {
+  display: flex;
+  flex-wrap: wrap;
+  width: 250px;
+}
+
+.c-cell {
+  border: 1px solid #000;
+  height: 20px;
+  width: 20px;
+  margin: 1px;
+}
+
+.c-cell__isExist {
+  background-color: #ccc;
+}
