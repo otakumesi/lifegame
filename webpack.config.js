@@ -8,10 +8,9 @@ const dist = path.resolve(__dirname, "./dist/");
 
 const config = {
   devtool: "#source-map",
-  context: src,
   entry: {
-    app: "main.js",
-    vendor: [react, react - dom, redux, react - redux]
+    app: path.resolve(src, "main.js"),
+    vendor: ["react", "react-dom", "redux", "react-redux"]
   },
   output: {
     path: dist,
@@ -20,21 +19,21 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env"]
+            presets: ["@babel/preset-env", "@babel/preset-react"]
           }
         }
       },
       {
-        test: /\.html/,
+        test: /\.html$/,
         use: "html-loader"
       },
       {
-        test: /\.css/,
+        test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: [
@@ -52,8 +51,14 @@ const config = {
       }
     ]
   },
+  resolve: {
+    extensions: [".js", ".jsx"]
+  },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: "LIFEGAME",
+      template: path.resolve(src, "index.html")
+    }),
     new ExtractTextPlugin("assets/css/application.css")
   ]
 };
