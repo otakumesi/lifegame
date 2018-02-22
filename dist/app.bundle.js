@@ -21135,7 +21135,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _reactDom.default.render(_react.default.createElement(_reactRedux.Provider, {
   store: _store.default
-}, _react.default.createElement(_App.default, null)));
+}, _react.default.createElement(_App.default, null)), document.getElementById("app"));
 
 /***/ }),
 /* 68 */
@@ -21173,12 +21173,12 @@ exports.default = void 0;
 
 var _redux = __webpack_require__(11);
 
-var _cells = _interopRequireDefault(__webpack_require__(70));
+var _field = _interopRequireDefault(__webpack_require__(70));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = (0, _redux.combineReducers)({
-  cells: _cells.default
+  field: _field.default
 });
 
 exports.default = _default;
@@ -21193,10 +21193,12 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = cells;
-var initialState = {};
+exports.default = field;
+var initialState = {
+  cells: []
+};
 
-function cells() {
+function field() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
@@ -21306,7 +21308,15 @@ function (_React$Component) {
     // Header, Footerなどをここで挿入する？
     // あるいはAppか？
     value: function render() {
-      return _react.default.createElement(FieldContainer, null);
+      return _react.default.createElement("div", {
+        className: "l-global-wrapper"
+      }, _react.default.createElement("header", {
+        className: "l-header"
+      }), _react.default.createElement("main", {
+        className: "l-main"
+      }, _react.default.createElement(_FieldContainer.default, null)), _react.default.createElement("footer", {
+        className: "l-footer"
+      }));
     }
   }]);
 
@@ -21323,6 +21333,11 @@ exports.default = _default;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
 var _reactRedux = __webpack_require__(28);
 
 var _Field = _interopRequireDefault(__webpack_require__(74));
@@ -21331,7 +21346,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    cells: state.cells
+    cells: state.field.cells
   };
 };
 
@@ -21339,7 +21354,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {};
 };
 
-(0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Field.default);
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Field.default);
+
+exports.default = _default;
 
 /***/ }),
 /* 74 */
@@ -21392,7 +21409,7 @@ function (_React$Component) {
           isExist: cell.isExist
         });
       });
-      return _react.default.createElement(CellItems, null);
+      return _react.default.createElement("ul", null, CellItems);
     }
   }]);
 
