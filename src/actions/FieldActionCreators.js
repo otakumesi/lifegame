@@ -1,13 +1,18 @@
-export function produceCell() {
+export PRODUCE_CELL = "PRODUCE_CELL";
+export KILL_CELL = "KILL_CELL";
+
+export function produceCell(index) {
   return {
-    type: 'PRODUCE_CELL',
-    true
-  }
+    type: PRODUCE_CELL,
+    index,
+    value: true
+  };
 }
 
-export function killCell() {
+export function killCell(index) {
   return {
-    type: 'KILL_CELL',
-    false
-  }
+    type: KILL_CELL,
+    index,
+    value: false
+  };
 }

@@ -5,7 +5,7 @@ class Field extends React.Component {
   render() {
     const { cells } = this.props;
     const CellItems = cells.map((cell) =>
-      <Cell key={cell.id} isExist={cell.isExist} />
+      <Cell key={cell.id} isExist={cell.isExist} onClick={} />
     )
     return (
       <div className="c-cells">

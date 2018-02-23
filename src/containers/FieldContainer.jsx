@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Field from '../components/Field';
+import { produceCell, killCell } from '../actions/FieldActionCreators';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -9,7 +10,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    produceCell: index => dispatch(FieldActions.produceCell(index)),
+    killCell: index => dispatch(FieldActions.killCell(index))
   }
 }
 
