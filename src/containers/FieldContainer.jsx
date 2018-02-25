@@ -1,17 +1,20 @@
 import { connect } from 'react-redux';
 import Field from '../components/Field';
-import { produceCell, killCell } from '../actions/FieldActionCreators';
+import { startGame, produceCell, killCell, renderNextField } from '../actions/FieldActionCreators';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    cells: state.field.cells
+    cells: state.field.cells,
+    isStarted: state.field.isStarted
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    produceCell: index => dispatch(FieldActions.produceCell(index)),
-    killCell: index => dispatch(FieldActions.killCell(index))
+    produceCell: index => dispatch(produceCell(index)),
+    killCell: index => dispatch(killCell(index)),
+    renderNextField: cells => dispatch(renderNextField(cells)),
+    startGame: () => dispatch(startGame())
   }
 }
 

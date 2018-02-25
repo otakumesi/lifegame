@@ -10,7 +10,7 @@ const config = {
   devtool: "#source-map",
   entry: {
     app: path.resolve(src, "main.js"),
-    vendor: ["react", "react-dom", "redux", "react-redux", "uuid"]
+    vendor: ["react", "react-dom", "redux", "react-redux", "uuid", "classnames", "lodash"]
   },
   output: {
     path: dist,
@@ -24,7 +24,8 @@ const config = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"]
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["@babel/plugin-proposal-object-rest-spread"]
           }
         }
       },
