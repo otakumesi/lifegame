@@ -1,117 +1,49 @@
 import CellDimensionPolicy from './CellDimentionPolicy';
+import CellDimensionAdjacentFactory from './CellDimentionAdjacentFactory';
 
 export default class CellDimension {
   constructor(numOfCells, indexOfCell) {
     this.policy = new CellDimensionPolicy(numOfCells, indexOfCell);
-    this.indexOfCell = indexOfCell;
-    this.baseNumber = Math.sqrt(numOfCells);
+    this.factory = new CellDimensionAdjacentFactory(numOfCells, indexOfCell);
   }
 
   adjacents() {
     if (this.policy.isTopLeftCorner()) {
-      return this.adjacentsOfTopLeftCorner();
+      return this.factory.adjacentsOfTopLeftCorner();
     }
 
     if (this.policy.isTopRightCorner()) {
-      return this.adjacentsOfTopRightCorner();
+      return this.factory.adjacentsOfTopRightCorner();
     }
 
     if (this.policy.isTopIntermediateCross()) {
-      return this.adjacentsOfTopIntermediate();
+      return this.factory.adjacentsOfTopIntermediate();
     }
 
     if (this.policy.isBottomLeftCorner()) {
-      return this.adjacentsOfBottomLeftCorner();
+      return this.factory.adjacentsOfBottomLeftCorner();
     }
 
     if (this.policy.isBottomRightCorner()) {
-      return this.adjacentsOfBottomRightCorner();
+      return this.factory.adjacentsOfBottomRightCorner();
     }
 
     if (this.policy.isBottomIntermediateCross()) {
-      return this.adjacentsOfBottomIntermediate();
+      return this.factory.adjacentsOfBottomIntermediate();
     }
 
     if (this.policy.isLeftIntermediateVertical()) {
-      return this.adjacentsOfLeftIntermediate();
+      return this.factory.adjacentsOfLeftIntermediate();
     }
 
     if (this.policy.isRightIntermediateVertical()) {
-      return this.adjacentsOfRightIntermediate();
+      return this.factory.adjacentsOfRightIntermediate();
     }
 
     if (this.policy.isIntermediate()) {
-      return this.adjacentsOfIntermediate();
+      return this.factory.adjacentsOfIntermediate();
     }
 
     return [];
-  }
-
-  left() {
-    return this.indexOfCell - 1;
-  }
-
-  right() {
-    return this.indexOfCell + 1;
-  }
-
-  top() {
-    return this.indexOfCell - this.baseNumber;
-  }
-
-  bottom() {
-    return this.indexOfCell + this.baseNumber;
-  }
-
-  topLeftDiagonal() {
-    return this.top() - 1;
-  }
-
-  topRightDiagonal() {
-    return this.top() + 1;
-  }
-
-  bottomLeftDiagonal() {
-    return this.bottom() - 1;
-  }
-
-  bottomRightDiagonal() {
-    return this.bottom() + 1;
-  }
-
-  adjacentsOfTopLeftCorner() {
-    return [this.right(), this.bottom(), this.bottomRightDiagonal()];
-  }
-
-  adjacentsOfTopRightCorner() {
-    return [this.left(), this.bottom(), this.bottomLeftDiagonal()];
-  }
-
-  adjacentsOfTopIntermediate() {
-    return [this.left(), this.right(), this.bottom(), this.bottomLeftDiagonal(), this.bottomRightDiagonal()];
-  }
-
-  adjacentsOfBottomLeftCorner() {
-    return [this.right(), this.top(), this.topRightDiagonal()];
-  }
-
-  adjacentsOfBottomRightCorner() {
-    return [this.left(), this.top(), this.topLeftDiagonal()];
-  }
-
-  adjacentsOfBottomIntermediate() {
-    return [this.left(), this.right(), this.top(), this.topLeftDiagonal(), this.topRightDiagonal()];
-  }
-
-  adjacentsOfLeftIntermediate() {
-    return [this.right(), this.top(), this.bottom(), this.topRightDiagonal(), this.bottomRightDiagonal()];
-  }
-
-  adjacentsOfRightIntermediate() {
-    return [this.left(), this.top(), this.bottom(), this.topLeftDiagonal(), this.bottomRightDiagonal()];
-  }
-
-  adjacentsOfIntermediate() {
-    return [this.left(), this.right(), this.top(), this.bottom(), this.topLeftDiagonal(), this.topRightDiagonal(), this.bottomLeftDiagonal(), this.bottomRightDiagonal()]
   }
 }

@@ -21452,7 +21452,7 @@ var _reactRedux = __webpack_require__(28);
 
 var _store = _interopRequireDefault(__webpack_require__(75));
 
-var _App = _interopRequireDefault(__webpack_require__(81));
+var _App = _interopRequireDefault(__webpack_require__(83));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21530,7 +21530,7 @@ var _v = _interopRequireDefault(__webpack_require__(70));
 
 var _CellDimension = _interopRequireDefault(__webpack_require__(78));
 
-var _lodash = _interopRequireDefault(__webpack_require__(80));
+var _lodash = _interopRequireDefault(__webpack_require__(82));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21605,6 +21605,8 @@ exports.default = void 0;
 
 var _CellDimentionPolicy = _interopRequireDefault(__webpack_require__(79));
 
+var _CellDimentionAdjacentFactory = _interopRequireDefault(__webpack_require__(80));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21620,135 +21622,49 @@ function () {
     _classCallCheck(this, CellDimension);
 
     this.policy = new _CellDimentionPolicy.default(numOfCells, indexOfCell);
-    this.indexOfCell = indexOfCell;
-    this.baseNumber = Math.sqrt(numOfCells);
+    this.factory = new _CellDimentionAdjacentFactory.default(numOfCells, indexOfCell);
   }
 
   _createClass(CellDimension, [{
     key: "adjacents",
     value: function adjacents() {
       if (this.policy.isTopLeftCorner()) {
-        return this.adjacentsOfTopLeftCorner();
+        return this.factory.adjacentsOfTopLeftCorner();
       }
 
       if (this.policy.isTopRightCorner()) {
-        return this.adjacentsOfTopRightCorner();
+        return this.factory.adjacentsOfTopRightCorner();
       }
 
       if (this.policy.isTopIntermediateCross()) {
-        return this.adjacentsOfTopIntermediate();
+        return this.factory.adjacentsOfTopIntermediate();
       }
 
       if (this.policy.isBottomLeftCorner()) {
-        return this.adjacentsOfBottomLeftCorner();
+        return this.factory.adjacentsOfBottomLeftCorner();
       }
 
       if (this.policy.isBottomRightCorner()) {
-        return this.adjacentsOfBottomRightCorner();
+        return this.factory.adjacentsOfBottomRightCorner();
       }
 
       if (this.policy.isBottomIntermediateCross()) {
-        return this.adjacentsOfBottomIntermediate();
+        return this.factory.adjacentsOfBottomIntermediate();
       }
 
       if (this.policy.isLeftIntermediateVertical()) {
-        return this.adjacentsOfLeftIntermediate();
+        return this.factory.adjacentsOfLeftIntermediate();
       }
 
       if (this.policy.isRightIntermediateVertical()) {
-        return this.adjacentsOfRightIntermediate();
+        return this.factory.adjacentsOfRightIntermediate();
       }
 
       if (this.policy.isIntermediate()) {
-        return this.adjacentsOfIntermediate();
+        return this.factory.adjacentsOfIntermediate();
       }
 
       return [];
-    }
-  }, {
-    key: "left",
-    value: function left() {
-      return this.indexOfCell - 1;
-    }
-  }, {
-    key: "right",
-    value: function right() {
-      return this.indexOfCell + 1;
-    }
-  }, {
-    key: "top",
-    value: function top() {
-      return this.indexOfCell - this.baseNumber;
-    }
-  }, {
-    key: "bottom",
-    value: function bottom() {
-      return this.indexOfCell + this.baseNumber;
-    }
-  }, {
-    key: "topLeftDiagonal",
-    value: function topLeftDiagonal() {
-      return this.top() - 1;
-    }
-  }, {
-    key: "topRightDiagonal",
-    value: function topRightDiagonal() {
-      return this.top() + 1;
-    }
-  }, {
-    key: "bottomLeftDiagonal",
-    value: function bottomLeftDiagonal() {
-      return this.bottom() - 1;
-    }
-  }, {
-    key: "bottomRightDiagonal",
-    value: function bottomRightDiagonal() {
-      return this.bottom() + 1;
-    }
-  }, {
-    key: "adjacentsOfTopLeftCorner",
-    value: function adjacentsOfTopLeftCorner() {
-      return [this.right(), this.bottom(), this.bottomRightDiagonal()];
-    }
-  }, {
-    key: "adjacentsOfTopRightCorner",
-    value: function adjacentsOfTopRightCorner() {
-      return [this.left(), this.bottom(), this.bottomLeftDiagonal()];
-    }
-  }, {
-    key: "adjacentsOfTopIntermediate",
-    value: function adjacentsOfTopIntermediate() {
-      return [this.left(), this.right(), this.bottom(), this.bottomLeftDiagonal(), this.bottomRightDiagonal()];
-    }
-  }, {
-    key: "adjacentsOfBottomLeftCorner",
-    value: function adjacentsOfBottomLeftCorner() {
-      return [this.right(), this.top(), this.topRightDiagonal()];
-    }
-  }, {
-    key: "adjacentsOfBottomRightCorner",
-    value: function adjacentsOfBottomRightCorner() {
-      return [this.left(), this.top(), this.topLeftDiagonal()];
-    }
-  }, {
-    key: "adjacentsOfBottomIntermediate",
-    value: function adjacentsOfBottomIntermediate() {
-      return [this.left(), this.right(), this.top(), this.topLeftDiagonal(), this.topRightDiagonal()];
-    }
-  }, {
-    key: "adjacentsOfLeftIntermediate",
-    value: function adjacentsOfLeftIntermediate() {
-      return [this.right(), this.top(), this.bottom(), this.topRightDiagonal(), this.bottomRightDiagonal()];
-    }
-  }, {
-    key: "adjacentsOfRightIntermediate",
-    value: function adjacentsOfRightIntermediate() {
-      return [this.left(), this.top(), this.bottom(), this.topLeftDiagonal(), this.bottomRightDiagonal()];
-    }
-  }, {
-    key: "adjacentsOfIntermediate",
-    value: function adjacentsOfIntermediate() {
-      return [this.left(), this.right(), this.top(), this.bottom(), this.topLeftDiagonal(), this.topRightDiagonal(), this.bottomLeftDiagonal(), this.bottomRightDiagonal()];
     }
   }]);
 
@@ -21874,6 +21790,164 @@ exports.default = CellDimensionPolicy;
 
 /***/ }),
 /* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _CellAdjacent = _interopRequireDefault(__webpack_require__(81));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var CellDimensionAdjacentFactory =
+/*#__PURE__*/
+function () {
+  function CellDimensionAdjacentFactory(numOfCells, indexOfCell) {
+    _classCallCheck(this, CellDimensionAdjacentFactory);
+
+    this.adjacent = new _CellAdjacent.default(numOfCells, indexOfCell);
+  }
+
+  _createClass(CellDimensionAdjacentFactory, [{
+    key: "adjacentsOfTopLeftCorner",
+    value: function adjacentsOfTopLeftCorner() {
+      return [this.adjacent.right(), this.adjacent.bottom(), this.adjacent.bottomRightDiagonal()];
+    }
+  }, {
+    key: "adjacentsOfTopRightCorner",
+    value: function adjacentsOfTopRightCorner() {
+      return [this.adjacent.left(), this.adjacent.bottom(), this.adjacent.bottomLeftDiagonal()];
+    }
+  }, {
+    key: "adjacentsOfTopIntermediate",
+    value: function adjacentsOfTopIntermediate() {
+      return [this.adjacent.left(), this.adjacent.right(), this.adjacent.bottom(), this.adjacent.bottomLeftDiagonal(), this.adjacent.bottomRightDiagonal()];
+    }
+  }, {
+    key: "adjacentsOfBottomLeftCorner",
+    value: function adjacentsOfBottomLeftCorner() {
+      return [this.adjacent.right(), this.adjacent.top(), this.adjacent.topRightDiagonal()];
+    }
+  }, {
+    key: "adjacentsOfBottomRightCorner",
+    value: function adjacentsOfBottomRightCorner() {
+      return [this.adjacent.left(), this.adjacent.top(), this.adjacent.topLeftDiagonal()];
+    }
+  }, {
+    key: "adjacentsOfBottomIntermediate",
+    value: function adjacentsOfBottomIntermediate() {
+      return [this.adjacent.left(), this.adjacent.right(), this.adjacent.top(), this.adjacent.topLeftDiagonal(), this.adjacent.topRightDiagonal()];
+    }
+  }, {
+    key: "adjacentsOfLeftIntermediate",
+    value: function adjacentsOfLeftIntermediate() {
+      return [this.adjacent.right(), this.adjacent.top(), this.adjacent.bottom(), this.adjacent.topRightDiagonal(), this.adjacent.bottomRightDiagonal()];
+    }
+  }, {
+    key: "adjacentsOfRightIntermediate",
+    value: function adjacentsOfRightIntermediate() {
+      return [this.adjacent.left(), this.adjacent.top(), this.adjacent.bottom(), this.adjacent.topLeftDiagonal(), this.adjacent.bottomRightDiagonal()];
+    }
+  }, {
+    key: "adjacentsOfIntermediate",
+    value: function adjacentsOfIntermediate() {
+      return [this.adjacent.left(), this.adjacent.right(), this.adjacent.top(), this.adjacent.bottom(), this.adjacent.topLeftDiagonal(), this.adjacent.topRightDiagonal(), this.adjacent.bottomLeftDiagonal(), this.adjacent.bottomRightDiagonal()];
+    }
+  }]);
+
+  return CellDimensionAdjacentFactory;
+}();
+
+exports.default = CellDimensionAdjacentFactory;
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var CellAdjacent =
+/*#__PURE__*/
+function () {
+  function CellAdjacent(numOfCells, indexOfCell) {
+    _classCallCheck(this, CellAdjacent);
+
+    this.indexOfCell = indexOfCell;
+    this.baseNumber = Math.sqrt(numOfCells);
+  }
+
+  _createClass(CellAdjacent, [{
+    key: "left",
+    value: function left() {
+      return this.indexOfCell - 1;
+    }
+  }, {
+    key: "right",
+    value: function right() {
+      return this.indexOfCell + 1;
+    }
+  }, {
+    key: "top",
+    value: function top() {
+      return this.indexOfCell - this.baseNumber;
+    }
+  }, {
+    key: "bottom",
+    value: function bottom() {
+      return this.indexOfCell + this.baseNumber;
+    }
+  }, {
+    key: "topLeftDiagonal",
+    value: function topLeftDiagonal() {
+      return this.top() - 1;
+    }
+  }, {
+    key: "topRightDiagonal",
+    value: function topRightDiagonal() {
+      return this.top() + 1;
+    }
+  }, {
+    key: "bottomLeftDiagonal",
+    value: function bottomLeftDiagonal() {
+      return this.bottom() - 1;
+    }
+  }, {
+    key: "bottomRightDiagonal",
+    value: function bottomRightDiagonal() {
+      return this.bottom() + 1;
+    }
+  }]);
+
+  return CellAdjacent;
+}();
+
+exports.default = CellAdjacent;
+
+/***/ }),
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -23628,7 +23702,7 @@ module.exports = cloneDeep;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(71)(module)))
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23641,7 +23715,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(2));
 
-var _Home = _interopRequireDefault(__webpack_require__(82));
+var _Home = _interopRequireDefault(__webpack_require__(84));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23682,7 +23756,7 @@ var _default = App;
 exports.default = _default;
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23695,7 +23769,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(2));
 
-var _FieldContainer = _interopRequireDefault(__webpack_require__(83));
+var _FieldContainer = _interopRequireDefault(__webpack_require__(85));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23750,7 +23824,7 @@ var _default = Home;
 exports.default = _default;
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23763,7 +23837,7 @@ exports.default = void 0;
 
 var _reactRedux = __webpack_require__(28);
 
-var _Field = _interopRequireDefault(__webpack_require__(84));
+var _Field = _interopRequireDefault(__webpack_require__(86));
 
 var _FieldActionCreators = __webpack_require__(72);
 
@@ -23798,7 +23872,7 @@ var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Fi
 exports.default = _default;
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23811,9 +23885,9 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(2));
 
-var _Cell = _interopRequireDefault(__webpack_require__(85));
+var _Cell = _interopRequireDefault(__webpack_require__(87));
 
-var _lodash = _interopRequireDefault(__webpack_require__(86));
+var _lodash = _interopRequireDefault(__webpack_require__(88));
 
 var _classnames = _interopRequireDefault(__webpack_require__(31));
 
@@ -23918,7 +23992,7 @@ var _default = Field;
 exports.default = _default;
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23984,7 +24058,7 @@ var _default = Cell;
 exports.default = _default;
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports) {
 
 /**
