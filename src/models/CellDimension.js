@@ -111,7 +111,6 @@ export default class CellDimension {
     return [this.left(), this.top(), this.bottom(), this.topLeftDiagonal(), this.bottomRightDiagonal()];
   }
 
-
   adjacentsOfIntermediate() {
     return [this.left(), this.right(), this.top(), this.bottom(), this.topLeftDiagonal(), this.topRightDiagonal(), this.bottomLeftDiagonal(), this.bottomRightDiagonal()]
   }

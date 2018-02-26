@@ -6,14 +6,17 @@ class Home extends React.Component {
   // あるいはAppか？
   render() {
     return (
-    <div className="l-global-wrapper">
-      <header className="l-header">
-      </header>
-      <main className="l-main">
-        <FieldContainer />
-      </main>
-      <footer className="l-footer">
-      </footer>
+      <div className="l-global-outer">
+        <div className="l-global-inner">
+          <header className="l-header">
+            <h1 className="c-title">LIFEGAME</h1>
+          </header>
+          <main className="l-main">
+            <FieldContainer />
+          </main>
+          <footer className="l-footer">
+          </footer>
+        </div>
     </div>
     )
   }
