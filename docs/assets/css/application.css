@@ -55,7 +55,7 @@ body {
   width: 100%; }
 
 .l-header {
-  background-color: #bbf049;
+  background-color: #323232;
   color: #fff;
   height: 200px;
   margin-bottom: 20px;
@@ -89,11 +89,12 @@ body {
 
 .c-button-start {
   margin: 0;
-  height: 15px;
-  width: auto;
-  border-radius: 10px;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  border: 1px solid #000;
   background-color: #ccc;
-  font-size: 5px; }
+  font-size: 15px; }
 
 .c-operator-box {
   padding: 30px; }
