@@ -1,5 +1,7 @@
 import React from 'react';
 import Cell from './Cell';
+import chunk from 'lodash.chunk';
+import ClassNames from 'classnames';
 
 class Field extends React.Component {
   componentDidUpdate(prevProps, prefState) {
@@ -26,25 +28,35 @@ class Field extends React.Component {
 
   render() {
     const { cells } = this.props;
-    const CellItems = cells.map((cell, index) =>
-      <Cell
-      key={cell.key}
-      index={index}
-      isExist={cell.isExist}
-      produceCell={this.props.produceCell}
-      killCell={this.props.killCell}
-      />
-    )
+    const baseCellNumber = Math.sqrt(cells.length);
+    const cellChunks = chunk(cells, baseCellNumber);
     return (
       <div>
-        <button
-           onClick={this.props.startGame}
-           disabled={this.props.isStarted}>
-            Start!!!
-        </button>
-      <div className="c-cells">
-        {CellItems}
-      </div>
+        <div className="c-cells">
+          {
+            cellChunks.map((cellChunk, chunkIndex) =>
+            <div className={ClassNames('c-cell-row', 'u-flex', 'u-flex__center')} key={chunkIndex}>
+              {
+                cellChunk.map((cell, cellIndex) =>
+                    <Cell
+                      key={cell.key}
+                      index={(chunkIndex * baseCellNumber) + cellIndex}
+                      isExist={cell.isExist}
+                      produceCell={this.props.produceCell}
+                      killCell={this.props.killCell}
+                    />)
+              }
+            </div>)
+          }
+        </div>
+        <div className="c-operator-box">
+          <button
+            className="c-button-start"
+            onClick={this.props.startGame}
+            disabled={this.props.isStarted}>
+              Start!!!
+          </button>
+        </div>
       </div>
     )
   }

@@ -4,18 +4,18 @@ import {
   PRODUCE_CELL,
   KILL_CELL
 } from "../actions/FieldActionCreators";
-import uuidv1 from 'uuid/v1';
-import CellDimension from '../models/CellDimension';
-import cloneDeep from 'lodash.clonedeep';
+import uuidv1 from "uuid/v1";
+import CellDimension from "../models/CellDimension";
+import cloneDeep from "lodash.clonedeep";
 
 const initialState = {
   isStarted: false,
   cells: buildCellPaths(
-    Array(20 ** 2)
-    .fill(0)
-    .map(() => {
-      return {key: uuidv1(), isExist: false, adjacents: []}
-    })
+    Array(30 ** 2)
+      .fill(0)
+      .map(() => {
+        return { key: uuidv1(), isExist: false, adjacents: [] };
+      })
   )
 };
 
@@ -27,7 +27,7 @@ export default function field(state = initialState, action) {
       return {
         ...state,
         isStarted: action.value
-      }
+      };
     case PRODUCE_CELL:
       cells[action.index].isExist = true;
       return {
@@ -35,7 +35,7 @@ export default function field(state = initialState, action) {
         cells
       };
     case KILL_CELL:
-      cells[action.index].isExist = false
+      cells[action.index].isExist = false;
       return {
         ...state,
         cells
@@ -44,7 +44,7 @@ export default function field(state = initialState, action) {
       return {
         ...state,
         cells: buildCellPaths(action.value)
-      }
+      };
     default:
       return state;
   }
@@ -52,7 +52,7 @@ export default function field(state = initialState, action) {
 
 function buildCellPaths(cells = []) {
   return cells.map((cell, index) => {
-    let adjacents = []
+    let adjacents = [];
     let dim = new CellDimension(cells.length, index);
     if (dim.isLeftEnd()) {
       adjacents.push(cells[index + 1]);
@@ -65,7 +65,7 @@ function buildCellPaths(cells = []) {
       adjacents.push(cells[index - 1]);
     }
 
-    let rootCellLength = Math.sqrt(cells.length)
+    let rootCellLength = Math.sqrt(cells.length);
 
     if (dim.isTopEnd()) {
       adjacents.push(cells[rootCellLength + index]);
@@ -125,6 +125,6 @@ function buildCellPaths(cells = []) {
       adjacents.push(cells[baseBottomNumber - 1]);
     }
     cell.adjacents = adjacents;
-    return cell
-  })
+    return cell;
+  });
 }

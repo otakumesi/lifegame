@@ -5,24 +5,25 @@ export default class CellDimension {
   }
 
   isLeftEnd() {
-    let baseNumber = Math.sqrt(this.numOfCells)
-    let modComputeCellPosition =  (this.cellNumber - 1) % baseNumber;
-    return this.cellNumber === 1 || modComputeCellPosition === 0
+    let baseNumber = Math.sqrt(this.numOfCells);
+    let modComputeCellPosition = (this.cellNumber - 1) % baseNumber;
+    return this.cellNumber === 1 || modComputeCellPosition === 0;
   }
 
   isRightEnd() {
-    let baseNumber = Math.sqrt(this.numOfCells)
-    let modComputeCellPosition =  this.cellNumber % baseNumber
-    return modComputeCellPosition === 0
+    let baseNumber = Math.sqrt(this.numOfCells);
+    let modComputeCellPosition = this.cellNumber % baseNumber;
+    return modComputeCellPosition === 0;
   }
 
   isTopEnd() {
-    return Math.sqrt(this.numOfCells) >= this.cellNumber
+    return Math.sqrt(this.numOfCells) >= this.cellNumber;
   }
 
   isBottomEnd() {
-    let cellPostisionComputedBottom = this.numOfCells - Math.sqrt(this.numOfCells)
-    return this.cellNumber >= cellPostisionComputedBottom
+    let cellPostisionComputedBottom =
+      this.numOfCells - Math.sqrt(this.numOfCells);
+    return this.cellNumber >= cellPostisionComputedBottom;
   }
 
   isTopLeftCorner() {
@@ -42,19 +43,19 @@ export default class CellDimension {
   }
 
   isTopIntermediateCross() {
-    return this.isTopEnd() && this.isIntermediateCross()
+    return this.isTopEnd() && this.isIntermediateCross();
   }
 
   isBottomIntermediateCross() {
-    return this.isBottomEnd() && this.isIntermediateCross()
+    return this.isBottomEnd() && this.isIntermediateCross();
   }
 
   isLeftIntermediateVertical() {
-    return this.isTopEnd() && this.isIntermediateVertical()
+    return this.isTopEnd() && this.isIntermediateVertical();
   }
 
   isRightIntermediateVertical() {
-    return this.isBottomEnd() && this.isIntermediateVertical()
+    return this.isBottomEnd() && this.isIntermediateVertical();
   }
 
   isIntermediate() {

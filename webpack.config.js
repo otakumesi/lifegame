@@ -4,13 +4,21 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const src = path.resolve(__dirname, "./src/");
-const dist = path.resolve(__dirname, "./dist/");
+const dist = path.resolve(__dirname, "./docs/");
 
 const config = {
   devtool: "#source-map",
   entry: {
     app: path.resolve(src, "main.js"),
-    vendor: ["react", "react-dom", "redux", "react-redux", "uuid", "classnames", "lodash"]
+    vendor: [
+      "react",
+      "react-dom",
+      "redux",
+      "react-redux",
+      "uuid",
+      "classnames",
+      "lodash"
+    ]
   },
   output: {
     path: dist,
