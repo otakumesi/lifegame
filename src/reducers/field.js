@@ -52,7 +52,6 @@ export default function field(state = initialState, action) {
 
 function buildCellPaths(cells = []) {
   return cells.map((cell, index) => {
-    let adjacents = [];
     let dim = new CellDimension(cells.length, index);
     cell.adjacents = dim.adjacents();
     return cell

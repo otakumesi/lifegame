@@ -12,7 +12,7 @@ class Field extends React.Component {
 
   updateCells() {
     let cells = this.props.cells;
-    let newCells = cells.map((cell, i) => {
+    let newCells = cells.map((cell) => {
       let newCell = {...cell};
       let lengthOfExistingAdjacents = newCell.adjacents.filter((adjacent) => cells[adjacent].isExist).length
       if (lengthOfExistingAdjacents >= 4 || lengthOfExistingAdjacents <= 1) {

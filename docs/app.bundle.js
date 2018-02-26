@@ -21584,7 +21584,6 @@ function field() {
 function buildCellPaths() {
   var cells = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   return cells.map(function (cell, index) {
-    var adjacents = [];
     var dim = new _CellDimension.default(cells.length, index);
     cell.adjacents = dim.adjacents();
     return cell;
@@ -23933,7 +23932,7 @@ function (_React$Component) {
     key: "updateCells",
     value: function updateCells() {
       var cells = this.props.cells;
-      var newCells = cells.map(function (cell, i) {
+      var newCells = cells.map(function (cell) {
         var newCell = _extends({}, cell);
 
         var lengthOfExistingAdjacents = newCell.adjacents.filter(function (adjacent) {
