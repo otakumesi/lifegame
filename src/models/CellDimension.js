@@ -1,71 +1,118 @@
+import CellDimensionPolicy from './CellDimentionPolicy';
+
 export default class CellDimension {
   constructor(numOfCells, indexOfCell) {
-    this.numOfCells = numOfCells;
-    this.cellNumber = indexOfCell + 1;
+    this.policy = new CellDimensionPolicy(numOfCells, indexOfCell);
+    this.indexOfCell = indexOfCell;
+    this.baseNumber = Math.sqrt(numOfCells);
   }
 
-  isLeftEnd() {
-    let baseNumber = Math.sqrt(this.numOfCells)
-    let modComputeCellPosition =  (this.cellNumber - 1) % baseNumber;
-    return this.cellNumber === 1 || modComputeCellPosition === 0
+  adjacents() {
+    if (this.policy.isTopLeftCorner()) {
+      return this.adjacentsOfTopLeftCorner();
+    }
+
+    if (this.policy.isTopRightCorner()) {
+      return this.adjacentsOfTopRightCorner();
+    }
+
+    if (this.policy.isTopIntermediateCross()) {
+      return this.adjacentsOfTopIntermediate();
+    }
+
+    if (this.policy.isBottomLeftCorner()) {
+      return this.adjacentsOfBottomLeftCorner();
+    }
+
+    if (this.policy.isBottomRightCorner()) {
+      return this.adjacentsOfBottomRightCorner();
+    }
+
+    if (this.policy.isBottomIntermediateCross()) {
+      return this.adjacentsOfBottomIntermediate();
+    }
+
+    if (this.policy.isLeftIntermediateVertical()) {
+      return this.adjacentsOfLeftIntermediate();
+    }
+
+    if (this.policy.isRightIntermediateVertical()) {
+      return this.adjacentsOfRightIntermediate();
+    }
+
+    if (this.policy.isIntermediate()) {
+      return this.adjacentsOfIntermediate();
+    }
+
+    return [];
   }
 
-  isRightEnd() {
-    let baseNumber = Math.sqrt(this.numOfCells)
-    let modComputeCellPosition =  this.cellNumber % baseNumber
-    return modComputeCellPosition === 0
+  left() {
+    return this.indexOfCell - 1;
   }
 
-  isTopEnd() {
-    return Math.sqrt(this.numOfCells) >= this.cellNumber
+  right() {
+    return this.indexOfCell + 1;
   }
 
-  isBottomEnd() {
-    let cellPostisionComputedBottom = this.numOfCells - Math.sqrt(this.numOfCells)
-    return this.cellNumber >= cellPostisionComputedBottom
+  top() {
+    return this.indexOfCell - this.baseNumber;
   }
 
-  isTopLeftCorner() {
-    return this.isTopEnd() && this.isLeftEnd();
+  bottom() {
+    return this.indexOfCell + this.baseNumber;
   }
 
-  isBottomLeftCorner() {
-    return this.isBottomEnd() && this.isLeftEnd();
+  topLeftDiagonal() {
+    return this.top() - 1;
   }
 
-  isTopRightCorner() {
-    return this.isTopEnd() && this.isRightEnd();
+  topRightDiagonal() {
+    return this.top() + 1;
   }
 
-  isBottomRightCorner() {
-    return this.isBottomEnd() && this.isRightEnd();
+  bottomLeftDiagonal() {
+    return this.bottom() - 1;
   }
 
-  isTopIntermediateCross() {
-    return this.isTopEnd() && this.isIntermediateCross()
+  bottomRightDiagonal() {
+    return this.bottom() + 1;
   }
 
-  isBottomIntermediateCross() {
-    return this.isBottomEnd() && this.isIntermediateCross()
+  adjacentsOfTopLeftCorner() {
+    return [this.right(), this.bottom(), this.bottomRightDiagonal()];
   }
 
-  isLeftIntermediateVertical() {
-    return this.isTopEnd() && this.isIntermediateVertical()
+  adjacentsOfTopRightCorner() {
+    return [this.left(), this.bottom(), this.bottomLeftDiagonal()];
   }
 
-  isRightIntermediateVertical() {
-    return this.isBottomEnd() && this.isIntermediateVertical()
+  adjacentsOfTopIntermediate() {
+    return [this.left(), this.right(), this.bottom(), this.bottomLeftDiagonal(), this.bottomRightDiagonal()];
   }
 
-  isIntermediate() {
-    return this.isIntermediateCross() && this.isIntermediateVertical();
+  adjacentsOfBottomLeftCorner() {
+    return [this.right(), this.top(), this.topRightDiagonal()];
   }
 
-  isIntermediateVertical() {
-    return !this.isTopEnd() && !this.isBottomEnd();
+  adjacentsOfBottomRightCorner() {
+    return [this.left(), this.top(), this.topLeftDiagonal()];
   }
 
-  isIntermediateCross() {
-    return !this.isRightEnd() && !this.isLeftEnd();
+  adjacentsOfBottomIntermediate() {
+    return [this.left(), this.right(), this.top(), this.topLeftDiagonal(), this.topRightDiagonal()];
+  }
+
+  adjacentsOfLeftIntermediate() {
+    return [this.right(), this.top(), this.bottom(), this.topRightDiagonal(), this.bottomRightDiagonal()];
+  }
+
+  adjacentsOfRightIntermediate() {
+    return [this.left(), this.top(), this.bottom(), this.topLeftDiagonal(), this.bottomRightDiagonal()];
+  }
+
+
+  adjacentsOfIntermediate() {
+    return [this.left(), this.right(), this.top(), this.bottom(), this.topLeftDiagonal(), this.topRightDiagonal(), this.bottomLeftDiagonal(), this.bottomRightDiagonal()]
   }
 }

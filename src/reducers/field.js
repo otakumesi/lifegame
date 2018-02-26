@@ -43,7 +43,7 @@ export default function field(state = initialState, action) {
     case RENDER_NEXT_FIELD:
       return {
         ...state,
-        cells: buildCellPaths(action.value)
+        cells: action.value
       }
     default:
       return state;
@@ -54,77 +54,7 @@ function buildCellPaths(cells = []) {
   return cells.map((cell, index) => {
     let adjacents = []
     let dim = new CellDimension(cells.length, index);
-    if (dim.isLeftEnd()) {
-      adjacents.push(cells[index + 1]);
-    }
-    if (dim.isRightEnd()) {
-      adjacents.push(cells[index - 1]);
-    }
-    if (dim.isIntermediateCross()) {
-      adjacents.push(cells[index + 1]);
-      adjacents.push(cells[index - 1]);
-    }
-
-    let rootCellLength = Math.sqrt(cells.length)
-
-    if (dim.isTopEnd()) {
-      adjacents.push(cells[rootCellLength + index]);
-    }
-    if (dim.isBottomEnd()) {
-      adjacents.push(cells[index - rootCellLength]);
-    }
-
-    let baseTopNumber = rootCellLength + index;
-    let baseBottomNumber = index - rootCellLength;
-
-    if (dim.isIntermediateVertical()) {
-      adjacents.push(cells[baseTopNumber]);
-      adjacents.push(cells[baseBottomNumber]);
-    }
-
-    if (dim.isTopLeftCorner()) {
-      adjacents.push(cells[baseTopNumber + 1]);
-    }
-
-    if (dim.isTopRightCorner()) {
-      adjacents.push(cells[baseTopNumber - 1]);
-    }
-
-    if (dim.isBottomRightCorner()) {
-      adjacents.push(cells[baseBottomNumber - 1]);
-    }
-
-    if (dim.isBottomLeftCorner()) {
-      adjacents.push(cells[baseBottomNumber + 1]);
-    }
-
-    if (dim.isTopIntermediateCross()) {
-      adjacents.push(cells[baseTopNumber + 1]);
-      adjacents.push(cells[baseTopNumber - 1]);
-    }
-
-    if (dim.isBottomIntermediateCross()) {
-      adjacents.push(cells[baseBottomNumber + 1]);
-      adjacents.push(cells[baseBottomNumber - 1]);
-    }
-
-    if (dim.isLeftIntermediateVertical()) {
-      adjacents.push(cells[baseBottomNumber + 1]);
-      adjacents.push(cells[baseTopNumber + 1]);
-    }
-
-    if (dim.isRightIntermediateVertical()) {
-      adjacents.push(cells[baseBottomNumber - 1]);
-      adjacents.push(cells[baseTopNumber - 1]);
-    }
-
-    if (dim.isIntermediate()) {
-      adjacents.push(cells[baseTopNumber + 1]);
-      adjacents.push(cells[baseTopNumber - 1]);
-      adjacents.push(cells[baseBottomNumber + 1]);
-      adjacents.push(cells[baseBottomNumber - 1]);
-    }
-    cell.adjacents = adjacents;
+    cell.adjacents = dim.adjacents();
     return cell
   })
 }
