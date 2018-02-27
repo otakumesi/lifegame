@@ -8,8 +8,16 @@ class Home extends React.Component {
     return (
       <div className="l-global-outer">
         <div className="l-global-inner">
-          <header className="l-header">
+          <header className="l-header u-position-relative">
             <h1 className="c-title">LIFEGAME</h1>
+            <div className="c-operator-box">
+              <button
+                className="c-button-start c-button__fixed-top"
+                onClick={this.props.startGame}
+                disabled={this.props.isStarted}>
+                  Start!!!
+              </button>
+            </div>
           </header>
           <main className="l-main">
             <FieldContainer />

@@ -3,7 +3,25 @@
   height: 100px;
   width: 100px;
   border-radius: 100%;
-  border: 1px solid #000;
-  background-color: #ccc;
+  background-color: #fff;
   font-size: 15px;
+  box-shadow: 5px 5px 1px #ccc;
+}
+
+.c-button-start:hover {
+  box-shadow: none;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+.c-button-start:active {
+  box-shadow: 5px 5px 5px #ccc inset;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.c-button__fixed-top {
+  position: absolute;
+  top: 50px;
+  right: 10%;
 }

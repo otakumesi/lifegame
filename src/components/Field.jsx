@@ -49,14 +49,6 @@ class Field extends React.Component {
             </div>)
           }
         </div>
-        <div className="c-operator-box">
-          <button
-            className="c-button-start"
-            onClick={this.props.startGame}
-            disabled={this.props.isStarted}>
-              Start!!!
-          </button>
-        </div>
       </div>
     )
   }
