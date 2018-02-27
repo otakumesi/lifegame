@@ -1,4 +1,4 @@
-import CellAdjacent from './CellAdjacent';
+import CellAdjacent from "./CellAdjacent";
 
 export default class CellDimensionAdjacentFactory {
   constructor(numOfCells, indexOfCell) {
@@ -6,38 +6,87 @@ export default class CellDimensionAdjacentFactory {
   }
 
   adjacentsOfTopLeftCorner() {
-    return [this.adjacent.right(), this.adjacent.bottom(), this.adjacent.bottomRightDiagonal()];
+    return [
+      this.adjacent.right(),
+      this.adjacent.bottom(),
+      this.adjacent.bottomRightDiagonal()
+    ];
   }
 
   adjacentsOfTopRightCorner() {
-    return [this.adjacent.left(), this.adjacent.bottom(), this.adjacent.bottomLeftDiagonal()];
+    return [
+      this.adjacent.left(),
+      this.adjacent.bottom(),
+      this.adjacent.bottomLeftDiagonal()
+    ];
   }
 
   adjacentsOfTopIntermediate() {
-    return [this.adjacent.left(), this.adjacent.right(), this.adjacent.bottom(), this.adjacent.bottomLeftDiagonal(), this.adjacent.bottomRightDiagonal()];
+    return [
+      this.adjacent.left(),
+      this.adjacent.right(),
+      this.adjacent.bottom(),
+      this.adjacent.bottomLeftDiagonal(),
+      this.adjacent.bottomRightDiagonal()
+    ];
   }
 
   adjacentsOfBottomLeftCorner() {
-    return [this.adjacent.right(), this.adjacent.top(), this.adjacent.topRightDiagonal()];
+    return [
+      this.adjacent.right(),
+      this.adjacent.top(),
+      this.adjacent.topRightDiagonal()
+    ];
   }
 
   adjacentsOfBottomRightCorner() {
-    return [this.adjacent.left(), this.adjacent.top(), this.adjacent.topLeftDiagonal()];
+    return [
+      this.adjacent.left(),
+      this.adjacent.top(),
+      this.adjacent.topLeftDiagonal()
+    ];
   }
 
   adjacentsOfBottomIntermediate() {
-    return [this.adjacent.left(), this.adjacent.right(), this.adjacent.top(), this.adjacent.topLeftDiagonal(), this.adjacent.topRightDiagonal()];
+    return [
+      this.adjacent.left(),
+      this.adjacent.right(),
+      this.adjacent.top(),
+      this.adjacent.topLeftDiagonal(),
+      this.adjacent.topRightDiagonal()
+    ];
   }
 
   adjacentsOfLeftIntermediate() {
-    return [this.adjacent.right(), this.adjacent.top(), this.adjacent.bottom(), this.adjacent.topRightDiagonal(), this.adjacent.bottomRightDiagonal()];
+    return [
+      this.adjacent.right(),
+      this.adjacent.top(),
+      this.adjacent.bottom(),
+      this.adjacent.topRightDiagonal(),
+      this.adjacent.bottomRightDiagonal()
+    ];
   }
 
   adjacentsOfRightIntermediate() {
-    return [this.adjacent.left(), this.adjacent.top(), this.adjacent.bottom(), this.adjacent.topLeftDiagonal(), this.adjacent.bottomRightDiagonal()];
+    return [
+      this.adjacent.left(),
+      this.adjacent.top(),
+      this.adjacent.bottom(),
+      this.adjacent.topLeftDiagonal(),
+      this.adjacent.bottomRightDiagonal()
+    ];
   }
 
   adjacentsOfIntermediate() {
-    return [this.adjacent.left(), this.adjacent.right(), this.adjacent.top(), this.adjacent.bottom(), this.adjacent.topLeftDiagonal(), this.adjacent.topRightDiagonal(), this.adjacent.bottomLeftDiagonal(), this.adjacent.bottomRightDiagonal()]
+    return [
+      this.adjacent.left(),
+      this.adjacent.right(),
+      this.adjacent.top(),
+      this.adjacent.bottom(),
+      this.adjacent.topLeftDiagonal(),
+      this.adjacent.topRightDiagonal(),
+      this.adjacent.bottomLeftDiagonal(),
+      this.adjacent.bottomRightDiagonal()
+    ];
   }
 }
